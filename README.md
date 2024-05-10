@@ -4,10 +4,10 @@ Este projeto consiste em um sistema de registro de hóspedes de um hotel, implem
 
 ## Organização do programa
 
-O programa foi construído com 2 arquivos, sendo que será gerado um terceiro, são eles:
--"main.c" - Responsável pela execução do programa
--"hospedes.h" - Responsável pelo chamamento das funções
--"hospedes.txt" - Arquivo que será designado a saída de dados em formato de texto.
+O programa foi construído com 2 arquivos, sendo que será gerado um terceiro, são eles:<br>
+-"main.c" - Responsável pela execução do programa <br>
+-"hospedes.h" - Responsável pelo chamamento das funções<br>
+-"hospedes.txt" - Arquivo que será designado a saída de dados em formato de texto.<br>
 
 
 ## Como utilizar
