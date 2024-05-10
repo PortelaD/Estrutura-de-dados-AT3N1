@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "hospedes.h"
+#include <hospedes.h>
 
 Hospede hospedes[MAX_HOSPEDES];
 int total_hospedes = 0;
@@ -229,4 +229,45 @@ void exibir_menu() {
     printf("6. Mostrar os numeros dos quartos vazios\n");
     printf("7. Sair\n");
     printf("Escolha uma opcao: ");
+}
+
+int main() {
+    criar_arquivo_hospedes();
+    
+    carregar_hospedes_do_arquivo();
+
+    int opcao;
+    do {
+        exibir_menu();
+        scanf("%d", &opcao);
+
+        switch(opcao) {
+            case 1:
+                inserir_hospede();
+                break;
+            case 2:
+                listar_hospedes_por_nome();
+                break;
+            case 3:
+                buscar_hospede();
+                break;
+            case 4:
+                editar_hospede();
+                break;
+            case 5:
+                liberar_quarto();
+                break;
+            case 6:
+                mostrar_quartos_vazios();
+                break;
+            case 7:
+                printf("Saindo do programa...\n");
+                break;
+            default:
+                printf("Opcao invalida. Tente novamente.\n");
+        }
+
+    } while(opcao != 7);
+
+    return 0;
 }
