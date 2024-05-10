@@ -75,3 +75,88 @@ void inserir_hospede() {
 
     salvar_hospedes_no_arquivo();
 }
+
+void listar_hospedes_por_nome() {
+    for (int i = 0; i < total_hospedes - 1; i++) {
+        for (int j = i + 1; j < total_hospedes; j++) {
+            if (strcmp(hospedes[i].nome, hospedes[j].nome) > 0) {
+                Hospede temp = hospedes[i];
+                hospedes[i] = hospedes[j];
+                hospedes[j] = temp;
+            }
+        }
+    }
+
+    printf("Hospedes em ordem alfabetica por nome:\n");
+    for (int i = 0; i < total_hospedes; i++) {
+        printf("Nome: %s, Quarto: %d\n", hospedes[i].nome, hospedes[i].quarto);
+    }
+}
+
+void buscar_hospede() {
+    char nome[MAX_NOME];
+    int encontrado = 0;
+
+    printf("Digite o nome do hospede a ser buscado: ");
+    scanf("%s", nome);
+
+    for (int i = 0; i < total_hospedes; i++) {
+        if (strcmp(hospedes[i].nome, nome) == 0) {
+            printf("Hospede encontrado no quarto %d.\n", hospedes[i].quarto);
+            encontrado = 1;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Hospede nao encontrado.\n");
+    }
+}
+
+void editar_hospede() {
+    char nome[MAX_NOME];
+    int opcao, quarto;
+
+    printf("Digite o nome do hospede que deseja editar: ");
+    scanf("%s", nome);
+
+    for (int i = 0; i < total_hospedes; i++) {
+        if (strcmp(hospedes[i].nome, nome) == 0) {
+            printf("Hospede encontrado.\n");
+            printf("O que deseja editar?\n");
+            printf("1. Nome\n");
+            printf("2. Numero do quarto\n");
+            printf("3. Ambos\n");
+            printf("Escolha uma opcao: ");
+            scanf("%d", &opcao);
+
+            switch(opcao) {
+                case 1:
+                    printf("Digite o novo nome do hospede: ");
+                    scanf("%s", hospedes[i].nome);
+                    break;
+                case 2:
+                    printf("Digite o novo numero do quarto: ");
+                    scanf("%d", &hospedes[i].quarto);
+                    break;
+                case 3:
+                    printf("Digite o novo nome do hospede: ");
+                    scanf("%s", hospedes[i].nome);
+
+                    printf("Digite o novo numero do quarto: ");
+                    scanf("%d", &hospedes[i].quarto);
+                    break;
+                default:
+                    printf("Opcao invalida.\n");
+                    break;
+            }
+
+            printf("Hospede editado com sucesso.\n");
+
+            salvar_hospedes_no_arquivo();
+            return;
+        }
+    }
+
+    printf("Hospede nao encontrado.\n");
+}
